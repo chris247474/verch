@@ -13,7 +13,7 @@ All of Claude Code's tools work — bash, file read/write/edit, grep, glob, agen
 ### Option A: npm (recommended)
 
 ```bash
-npm install -g openclaude
+npm install -g @gitlawb/openclaude
 ```
 
 ### Option B: From source (requires Bun)
@@ -67,6 +67,8 @@ node dist/cli.mjs
 ```
 
 That's it. The tool system, streaming, file editing, multi-step reasoning — everything works through the model you picked.
+
+The npm package name is `@gitlawb/openclaude`, but the installed CLI command is still `openclaude`.
 
 ---
 

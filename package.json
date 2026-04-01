@@ -1,11 +1,16 @@
 {
-  "name": "openclaude",
+  "name": "@gitlawb/openclaude",
   "version": "0.1.0",
   "description": "Claude Code opened to any LLM — OpenAI, Gemini, DeepSeek, Ollama, and 200+ models",
   "type": "module",
   "bin": {
     "openclaude": "./bin/openclaude"
   },
+  "files": [
+    "bin/",
+    "dist/cli.mjs",
+    "README.md"
+  ],
   "scripts": {
     "build": "bun run scripts/build.ts",
     "dev": "bun run build && node dist/cli.mjs",
@@ -26,7 +31,8 @@
     "doctor:runtime:json": "bun run scripts/system-check.ts --json",
     "doctor:report": "bun run scripts/system-check.ts --out reports/doctor-runtime.json",
     "hardening:check": "bun run smoke && bun run doctor:runtime",
-    "hardening:strict": "bun run typecheck && bun run hardening:check"
+    "hardening:strict": "bun run typecheck && bun run hardening:check",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "@alcalzone/ansi-tokenize": "^0.3.0",
@@ -123,5 +129,8 @@
     "ollama",
     "gemini"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
