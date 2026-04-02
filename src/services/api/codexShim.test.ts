@@ -93,6 +93,7 @@ describe('Codex request translation', () => {
     expect(tools).toEqual([
       {
         type: 'function',
+        strict: true,
         name: 'Agent',
         description: 'Spawn a sub-agent',
         parameters: {
