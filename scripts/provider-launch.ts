@@ -75,7 +75,7 @@ function parseLaunchOptions(argv: string[]): LaunchOptions {
 }
 
 function loadPersistedProfile(): ProfileFile | null {
-  const path = resolve(process.cwd(), '.openclaude-profile.json')
+  const path = resolve(process.cwd(), '.verch-profile.json')
   if (!existsSync(path)) return null
   try {
     const parsed = JSON.parse(readFileSync(path, 'utf8')) as ProfileFile

@@ -147,7 +147,7 @@ async function main(): Promise<void> {
 
   const profile = createProfileFile(selected, env)
 
-  const outputPath = resolve(process.cwd(), '.openclaude-profile.json')
+  const outputPath = resolve(process.cwd(), '.verch-profile.json')
   writeFileSync(outputPath, JSON.stringify(profile, null, 2), 'utf8')
 
   console.log(`Saved profile: ${selected}`)

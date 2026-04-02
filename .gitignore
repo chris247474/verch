@@ -3,5 +3,5 @@ dist/
 *.tsbuildinfo
 .env
 .env.*
-.openclaude-profile.json
+.verch-profile.json
 reports/

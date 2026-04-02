@@ -1,10 +1,10 @@
-# OpenClaude
+# Verch
 
-Use Claude Code with **any LLM** — not just Claude.
+Use **any LLM** as your personal agent harness — not just Claude.
 
-OpenClaude is a fork of the [Claude Code source leak](https://gitlawb.com/node/repos/z6MkgKkb/instructkr-claude-code) (exposed via npm source maps on March 31, 2026). We added an OpenAI-compatible provider shim so you can plug in GPT-4o, DeepSeek, Gemini, Llama, Mistral, or any model that speaks the OpenAI chat completions API. It now also supports the ChatGPT Codex backend for `codexplan` and `codexspark`.
+Verch is a fork of the [Claude Code source leak](https://gitlawb.com/node/repos/z6MkgKkb/instructkr-claude-code) (exposed via npm source maps on March 31, 2026). An OpenAI-compatible provider shim lets you plug in GPT-4o, DeepSeek, Gemini, Llama, Mistral, or any model that speaks the OpenAI chat completions API. It also supports the ChatGPT Codex backend for `codexplan` and `codexspark`.
 
-All of Claude Code's tools work — bash, file read/write/edit, grep, glob, agents, tasks, MCP — just powered by whatever model you choose.
+All tools work — bash, file read/write/edit, grep, glob, agents, tasks, MCP — just powered by whatever model you choose.
 
 ---
 
@@ -13,7 +13,7 @@ All of Claude Code's tools work — bash, file read/write/edit, grep, glob, agen
 ### Option A: npm (recommended)
 
 ```bash
-npm install -g @gitlawb/openclaude
+npm install -g verch
 ```
 
 ### Option B: From source (requires Bun)
@@ -21,7 +21,7 @@ npm install -g @gitlawb/openclaude
 ```bash
 # Clone from gitlawb
 git clone https://node.gitlawb.com/z6MkqDnb7Siv3Cwj7pGJq4T5EsUisECqR8KpnDLwcaZq5TPr/openclaude.git
-cd openclaude
+cd openclaude  # (or rename to verch/)
 
 # Install dependencies
 bun install
@@ -58,7 +58,7 @@ export OPENAI_MODEL=gpt-4o
 
 ```bash
 # If installed via npm
-openclaude
+verch
 
 # If built from source
 bun run dev
@@ -67,8 +67,6 @@ node dist/cli.mjs
 ```
 
 That's it. The tool system, streaming, file editing, multi-step reasoning — everything works through the model you picked.
-
-The npm package name is `@gitlawb/openclaude`, but the installed CLI command is still `openclaude`.
 
 ---
 
@@ -87,7 +85,7 @@ export OPENAI_MODEL=gpt-4o
 `codexplan` maps to GPT-5.4 on the Codex backend with high reasoning.
 `codexspark` maps to GPT-5.3 Codex Spark for faster loops.
 
-If you already use the Codex CLI, OpenClaude will read `~/.codex/auth.json`
+If you already use the Codex CLI, Verch will read `~/.codex/auth.json`
 automatically. You can also point it elsewhere with `CODEX_AUTH_JSON_PATH` or
 override the token directly with `CODEX_API_KEY`.
 
@@ -98,7 +96,7 @@ export OPENAI_MODEL=codexplan
 # optional if you do not already have ~/.codex/auth.json
 export CODEX_API_KEY=...
 
-openclaude
+verch
 ```
 
 ### DeepSeek
@@ -220,7 +218,7 @@ bun run hardening:strict
 ```
 
 Notes:
-- `doctor:runtime` fails fast if `CLAUDE_CODE_USE_OPENAI=1` with a placeholder key (`SUA_CHAVE`) or a missing key for non-local providers.
+- `doctor:runtime` fails fast if `CLAUDE_CODE_USE_OPENAI=1` is set with a placeholder key (`SUA_CHAVE`) or a missing key for non-local providers.
 - Local providers (for example `http://localhost:11434/v1`) can run without `OPENAI_API_KEY`.
 - Codex profiles validate `CODEX_API_KEY` or the Codex CLI auth file and probe `POST /responses` instead of `GET /models`.
 
@@ -253,7 +251,7 @@ bun run profile:init -- --provider ollama --goal coding
 # codex bootstrap with a fast model alias
 bun run profile:init -- --provider codex --model codexspark
 
-# launch using persisted profile (.openclaude-profile.json)
+# launch using persisted profile (.verch-profile.json)
 bun run dev:profile
 
 # codex profile (uses CODEX_API_KEY or ~/.codex/auth.json)
@@ -300,10 +298,10 @@ For `dev:ollama`, make sure Ollama is running locally before launch.
 
 ## How It Works
 
-The shim (`src/services/api/openaiShim.ts`) sits between Claude Code and the LLM API:
+The shim (`src/services/api/openaiShim.ts`) sits between Verch and the LLM API:
 
 ```
-Claude Code Tool System
+Verch Tool System
         |
         v
   Anthropic SDK interface (duck-typed)
@@ -324,7 +322,7 @@ It translates:
 - OpenAI SSE streaming → Anthropic stream events
 - Anthropic system prompt arrays → OpenAI system messages
 
-The rest of Claude Code doesn't know it's talking to a different model.
+The rest of Verch doesn't know it's talking to a different model.
 
 ---
 

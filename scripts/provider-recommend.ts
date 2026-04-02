@@ -114,7 +114,7 @@ function printHumanSummary(payload: {
   }
 
   if (payload.applied) {
-    console.log('\nSaved .openclaude-profile.json with the recommended profile.')
+    console.log('\nSaved .verch-profile.json with the recommended profile.')
     console.log('Next: bun run dev:profile')
   } else {
     console.log(
@@ -154,7 +154,7 @@ async function maybeApplyProfile(
   const profileFile = createProfileFile(profile, env)
 
   writeFileSync(
-    resolve(process.cwd(), '.openclaude-profile.json'),
+    resolve(process.cwd(), '.verch-profile.json'),
     JSON.stringify(profileFile, null, 2),
     'utf8',
   )
